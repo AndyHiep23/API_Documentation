@@ -1,0 +1,634 @@
+FORMAT: 1A
+HOST: https://api.example.com
+
+# HPA3_Backend Api Documentation
+
+Authorization Method is Bearer Token:
+
+```http
+Authorization: bearer 5262d64b892e8d4341000001
+```
+
+# Data Structures
+
+## NoteData
++ id: 1 (required, number) - Unique identifier
++ contract: Contract_A (required) - Single line description
++ did: Something about DID - Full description of the note which supports Markdown.
+
+## NoteList (array)
++ (NoteData)
+
+# Group HaskPeakAPI
+
+## DID Manager [/dids]
+DID Manager API Descriptions
+
+### Create DID [POST]
+Create a new did using content in body.
+
++ Request Body (application/json)
+
+    + Body
+
+            {
+                "contract": "Contract_A",
+                "did": "This is the did",
+                "...": "..."
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": "1",
+                "contract": "Contract_A",
+                "did": "This is the did",
+                "...": "..."
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+
+### Get DIDs [GET]
+Get a list of DIDs.
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: f72fc914
+            X-Response-Time: 4ms
+
+    + Attributes (NoteList)
+
+    + Schema
+
+            <!-- include(did-schema.json) -->
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+### Verify DIDs [PUT]
+Verify DIDs.
+
++ Request Body (application/json)
+
+    + Body
+
+            {
+                DIDs data
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: f72fc914
+            X-Response-Time: 4ms
+
+    + Body
+
+            {
+                "verify": true
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+## Prescription [/pre_scription]
+Prescription API Descriptions
+
+### Rx Submit Data [GET /rxSubmitData]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "output": "boolean"
+            }
+
+    + Schema
+
+            <!-- include(pre_scription-schema.json) -->
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+
+### Rx Submit Data [POST /rxSubmitData]
+
++ Request Body (application/json)
+
+    + Body
+
+            {
+                "input": "hashData"
+            }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "output": "boolean"
+            }
+
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+### Disclose Rx [POST /discloseRx/{idRx} ]
+
++ Parameters
+    + idRx: `68a5sdf67` (required, string) - The Rx ID
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: 654321789
+            X-Response-Time: 4ms
+
+    + Body
+
+            {
+                "output": "boolean"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+
+### Token Issue (rewardToken) [POST /tokenIssue]
++ Request Body (application/json)
+
+    + Body
+
+            {
+                "input": "address"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: 654321789
+            X-Response-Time: 4ms
+
+    + Body
+
+            {
+                "output": "boolean"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+## Data Integrity [/data_integrity]
+Data Integrity API Descriptions
+
+### Hash Value [POST /hashValue]
++ Request Body (application/json)
+
+    + Body
+
+            {
+                "input": "data"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: 654321789
+            X-Response-Time: 4ms
+
+    + Body
+
+            {
+                "output": "hashData"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+### Check Integrity [POST /checkIntegrity]
++ Request Body (application/json)
+
+    + Body
+
+            {
+                "input": "hashData"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: 654321789
+            X-Response-Time: 4ms
+
+    + Body
+
+            {
+                "output": "boolean"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }
+
+### Medical Notebook Provision [POST /mnp]
++ Request Body (application/json)
+
+    + Body
+
+            {
+                "input": "address"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: 654321789
+            X-Response-Time: 4ms
+
+    + Body
+
+            {
+                "output": "Claim (add to identity)"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "error": "Bad Request"
+            }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+                "error": "Unauthorized"
+            }
+
++ Response 403 (application/json)
+
+    + Body
+
+            {
+                "error": "Forbidden Resources"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "error": "Page Not Found"
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+                "error": "Internal Server Error"
+            }

@@ -1,0 +1,28 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "uuid",
+                "description": "ID of Contract"
+            },
+            "contract": {
+                "type": "string",
+                "description": "Contain all contract data"
+            },
+            "did": {
+                "type": "string",
+                "description": " "
+            },
+            "valueDID": {
+                "type": "boolean",
+                "description": "Value of verify DID"
+            }
+        },
+        "required": [
+            "contract",
+            "did"
+        ]
+    }
+}

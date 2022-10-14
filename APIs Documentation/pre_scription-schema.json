@@ -1,0 +1,28 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "uuid",
+                "description": "id of Rx"
+            },
+            "hashData": {
+                "type": "object",
+                "description": "data hash about Rx"
+            },
+            "token": {
+                "type": "string",
+                "description": "Reward Token"
+            },
+            "valueRx": {
+                "type": "boolean",
+                "description": "Value of Rx"
+            }
+        },
+        "required": [
+            "hashData",
+            "token"
+        ]
+    }
+}
