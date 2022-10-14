@@ -40,51 +40,52 @@ Create a new did using content in body.
 + Response 201 (application/json)
     + Body
 
-            {
-                "id": "1",
-                "contract": "Contract_A",
-                "did": "This is the did",
-                "...": "..."
+            {   
+                "statusCode": 201,
+                "message": "MSG_009",
+                "data": {
+                    "id": "1",
+                    "contract": "Contract_A",
+                    "did": "This is the did",
+                    "...": "..."
+                }
             }
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
 
@@ -98,7 +99,32 @@ Get a list of DIDs.
             X-Request-ID: f72fc914
             X-Response-Time: 4ms
 
-    + Attributes (NoteList)
+    + Body
+
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": [
+                        {
+                            "id": "1",
+                            "contract": "Contract_A",
+                            "did": "This is the did",
+                            "...": "..."
+                        },
+                        {
+                            "id": "2",
+                            "contract": "Contract_B",
+                            "did": "This is the did",
+                            "...": "..."
+                        }
+                ],
+                "paginations": {
+                        "currentPage": 1,
+                        "pageSize": 10,
+                        "totalPage": 1,
+                        "totalCount": 2
+                }
+            }
 
     + Schema
 
@@ -108,40 +134,46 @@ Get a list of DIDs.
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 404 (application/json)
 
     + Body
 
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 404,
+                "message": "MSG_004"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
 ### Verify DIDs [PUT]
@@ -152,7 +184,7 @@ Verify DIDs.
     + Body
 
             {
-                DIDs data
+                "verified": "boolean"
             }
 
 + Response 200 (application/json)
@@ -164,108 +196,59 @@ Verify DIDs.
 
     + Body
 
-            {
-                "verify": true
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": {
+                    "verified": true
+                }
             }
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
 ## Prescription [/pre_scription]
 Prescription API Descriptions
 
-### Rx Submit Data [GET /rxSubmitData]
+### Rx Submit Data [POST /rxSubmitData]
 
-+ Response 200 (application/json)
-    + Body
-
-            {
-                "output": "boolean"
-            }
-
-    + Schema
++ Schema
 
             <!-- include(pre_scription-schema.json) -->
-
-+ Response 400 (application/json)
-
-    + Body
-
-            {
-                "error": "Bad Request"
-            }
-
-+ Response 401 (application/json)
-
-    + Body
-
-            {
-                "error": "Unauthorized"
-            }
-
-+ Response 403 (application/json)
-
-    + Body
-
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
-            }
-
-+ Response 500 (application/json)
-
-    + Body
-
-            {
-                "error": "Internal Server Error"
-            }
-
-
-### Rx Submit Data [POST /rxSubmitData]
 
 + Request Body (application/json)
 
@@ -276,51 +259,57 @@ Prescription API Descriptions
             }
 
 + Response 200 (application/json)
+
+    + Headers
+
+            X-Request-ID: f72fc914
+            X-Response-Time: 4ms
+
     + Body
 
-            {
-                "output": "boolean"
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": {
+                    "output": true
+                }
             }
-
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
 ### Disclose Rx [POST /discloseRx/{idRx} ]
@@ -332,53 +321,54 @@ Prescription API Descriptions
 
     + Headers
 
-            X-Request-ID: 654321789
+            X-Request-ID: f72fc914
             X-Response-Time: 4ms
 
     + Body
 
-            {
-                "output": "boolean"
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": {
+                    "output": true
+                }
             }
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
 
@@ -395,53 +385,54 @@ Prescription API Descriptions
 
     + Headers
 
-            X-Request-ID: 654321789
+            X-Request-ID: f72fc914
             X-Response-Time: 4ms
 
     + Body
 
-            {
-                "output": "boolean"
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": {
+                    "output": true
+                }
             }
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
 ## Data Integrity [/data_integrity]
@@ -460,53 +451,54 @@ Data Integrity API Descriptions
 
     + Headers
 
-            X-Request-ID: 654321789
+            X-Request-ID: f72fc914
             X-Response-Time: 4ms
 
     + Body
 
-            {
-                "output": "hashData"
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": {
+                    "output": "hashData"
+                }
             }
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
 ### Check Integrity [POST /checkIntegrity]
@@ -522,56 +514,57 @@ Data Integrity API Descriptions
 
     + Headers
 
-            X-Request-ID: 654321789
+            X-Request-ID: f72fc914
             X-Response-Time: 4ms
 
     + Body
 
-            {
-                "output": "boolean"
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": {
+                    "output": "boolean"
+                }
             }
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
-            }
-
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
 
-### Medical Notebook Provision [POST /mnp]
+### Medical Notebook Provision [GET /medicalNP]
 + Request Body (application/json)
 
     + Body
@@ -584,51 +577,76 @@ Data Integrity API Descriptions
 
     + Headers
 
-            X-Request-ID: 654321789
+            X-Request-ID: f72fc914
             X-Response-Time: 4ms
 
     + Body
 
-            {
-                "output": "Claim (add to identity)"
+            {   
+                "statusCode": 200,
+                "message": "MSG_002",
+                "data": [
+                        {
+                            "id": "1",
+                            "identity": "number1",
+                            "...": "..."
+                        },
+                        {
+                            "id": "2",
+                            "identity": "number2",
+                            "...": "..."
+                        }
+                ],
+                "paginations": {
+                        "currentPage": 1,
+                        "pageSize": 10,
+                        "totalPage": 1,
+                        "totalCount": 2
+                }
             }
 
 + Response 400 (application/json)
 
     + Body
 
-            {
-                "error": "Bad Request"
+            {   
+                "statusCode": 400,
+                "message": "MSG_005",
+                "data": null
             }
 
 + Response 401 (application/json)
 
     + Body
 
-            {
-                "error": "Unauthorized"
+            {   
+                "statusCode": 401,
+                "message": "MSG_012"
             }
 
 + Response 403 (application/json)
 
     + Body
 
-            {
-                "error": "Forbidden Resources"
+            {   
+                "statusCode": 401,
+                "message": "MSG_013"
             }
 
 + Response 404 (application/json)
 
     + Body
 
-            {
-                "error": "Page Not Found"
+            {   
+                "statusCode": 404,
+                "message": "MSG_004"
             }
 
 + Response 500 (application/json)
 
     + Body
 
-            {
-                "error": "Internal Server Error"
+            {   
+                "statusCode": 500,
+                "message": "MSG_999"
             }
